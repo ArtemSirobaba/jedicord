@@ -37,8 +37,9 @@ client.on('message', (message) => {
   } else if (command === 'nice') {
     message.reply('Thanks');
   } else if (command === 'count') {
+
     const numArgs = args.map((item) => +item);
-    const sum = numArgs.reduce((a, b) => a + b);
+    const sum = numArgs.reduce((a, b) => a + b, 0);
 
     message.reply(`The sum of all the arguments you provided is ${sum}!`);
   } else if (command === 'nice') {
