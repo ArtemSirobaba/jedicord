@@ -11,10 +11,10 @@ const prefix = '!';
 
 client.on('ready', () => {
   console.log('Jedicord is ready!');
+  // const date = { hour: 10, minute: 00 };
 
-  const date = { hour: 10, minute: 00 };
-
-  schedule.scheduleJob(date, () => {
+  schedule.scheduleJob('* 9 * * 1-5', () => {
+    //GMT+0000  https://crontab.guru/
     client.channels.cache.get(`813380135200751637`).send(`@everyone 
     What did you do yesterday? 
     What will you do today? 
@@ -37,7 +37,6 @@ client.on('message', (message) => {
   } else if (command === 'nice') {
     message.reply('Thanks');
   } else if (command === 'count') {
-
     const numArgs = args.map((item) => +item);
     const sum = numArgs.reduce((a, b) => a + b, 0);
 
