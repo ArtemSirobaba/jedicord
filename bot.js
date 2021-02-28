@@ -39,13 +39,9 @@ client.on('message', (message) => {
   } else if (command === 'count') {
     const numArgs = args.map((item) => +item);
     const sum = numArgs.reduce((a, b) => a + b, 0);
-
     message.reply(`The sum of all the arguments you provided is ${sum}!`);
-  } else if (command === 'nice') {
-    message.reply('Thanks');
-  } else if (command === 'nice') {
-    message.reply('Thanks');
-  } else if (command === 'jedi-daily') {
+  } 
+  else if (command === 'jedi-daily') {
     const text = message.content
       .replace(/(?:\r\n|\r|\n)/g, ' ')
       .split(/Yesterday|Today|Blockers/gi)
