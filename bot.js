@@ -13,7 +13,7 @@ client.on('ready', () => {
   console.log('Jedicord is ready!');
   // const date = { hour: 10, minute: 00 };
 
-  schedule.scheduleJob('* 9 * * 1-5', () => {
+  schedule.scheduleJob('0 9 * * 1-5', () => {
     //GMT+0000  https://crontab.guru/
     client.channels.cache.get(`813380135200751637`).send(`@everyone 
     What did you do yesterday? 
@@ -40,8 +40,7 @@ client.on('message', (message) => {
     const numArgs = args.map((item) => +item);
     const sum = numArgs.reduce((a, b) => a + b, 0);
     message.reply(`The sum of all the arguments you provided is ${sum}!`);
-  } 
-  else if (command === 'jedi-daily') {
+  } else if (command === 'jedi-daily') {
     const text = message.content
       .replace(/(?:\r\n|\r|\n)/g, ' ')
       .split(/Yesterday|Today|Blockers/gi)
