@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const schedule = require('node-schedule');
+const status = require('./status');
 
 require('dotenv').config();
 
@@ -11,19 +12,24 @@ const prefix = '!';
 
 client.on('ready', () => {
   console.log('Jedicord is ready!');
-  // const date = { hour: 10, minute: 00 };
 
   schedule.scheduleJob('0 9 * * 1-5', () => {
-    //GMT+0000  https://crontab.guru/
+    //https://crontab.guru/
     client.channels.cache.get(`813380135200751637`).send(`@everyone 
-    What did you do yesterday? 
-    What will you do today? 
-    Are there any blockers or impediments preventing you from doing your work?`);
+    What did you do yesterday? || Що ти робив вчора?
+    What will you do today? || Що ти будеш робити сьогодні?
+    (реплайте моє повідомлення та починайте вашу відповідь з 
+    Вчора ...
+    Сьогодні ...)`);
   });
 });
 
 client.on('message', (message) => {
   if (message.author.bot) return;
+  if (message.mentions.users.get('815193302831595551') !== undefined) {
+    status(message, client);
+  }
+
   if (!message.content.startsWith(prefix)) return;
 
   const commandBody = message.content.slice(prefix.length);
@@ -33,25 +39,12 @@ client.on('message', (message) => {
   if (command === 'ready') {
     message.reply('yes');
   } else if (command === 'time') {
-    message.reply(new Date().toLocaleString());
+    message.reply(new Date().toString());
   } else if (command === 'nice') {
     message.reply('Thanks');
   } else if (command === 'count') {
     const numArgs = args.map((item) => +item);
     const sum = numArgs.reduce((a, b) => a + b, 0);
     message.reply(`The sum of all the arguments you provided is ${sum}!`);
-  } else if (command === 'jedi-daily') {
-    const text = message.content
-      .replace(/(?:\r\n|\r|\n)/g, ' ')
-      .split(/Yesterday|Today|Blockers/gi)
-      .map((item) => item.trim());
-
-    client.channels.cache.get(`720538151038353520`).send(
-      `Here is the daily message of @${message.author.username}
-      :white_check_mark: You did yesterday: ${text[1]}
-      :tools: You going to do today: ${text[2]}
-      :sos: Your blockers: ${text[3]}`
-    );
-    //message.reply('not today, pal')
   }
 });
