@@ -16,11 +16,12 @@ client.on('ready', () => {
   schedule.scheduleJob('0 9 * * 1-5', () => {
     //https://crontab.guru/
     client.channels.cache.get(`813380135200751637`).send(`@everyone 
-    What did you do yesterday? || Що ти робив вчора?
-    What will you do today? || Що ти будеш робити сьогодні?
+    What did you do yesterday? | Що ти робив вчора?
+    What will you do today? | Що ти будеш робити сьогодні?
     (реплайте моє повідомлення та починайте вашу відповідь з 
     Вчора ...
-    Сьогодні ...)`);
+    Сьогодні ...
+    Блокери ... (опціонально))`);
   });
 });
 
