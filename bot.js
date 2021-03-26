@@ -13,7 +13,7 @@ const prefix = '!';
 client.on('ready', () => {
   console.log('Jedicord is ready!');
 
-  schedule.scheduleJob('0 9 * * 1-5', () => {
+  schedule.scheduleJob('0 9 * * *', () => {
     //https://crontab.guru/
     client.channels.cache.get(`817392453308907561`).send(`@everyone 
     What did you do yesterday? | Що ти робив вчора?
