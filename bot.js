@@ -11,17 +11,19 @@ client.login(process.env.BOT_TOKEN);
 const prefix = '!';
 
 client.on('ready', () => {
-  console.log('Jedicord is ready!');
+  console.log('Grogu is ready!');
 
-  schedule.scheduleJob('0 9 * * *', () => {
+  schedule.scheduleJob('0 9 * * 1', () => {
     //https://crontab.guru/
     client.channels.cache.get(`817392453308907561`).send(`@everyone 
-    What did you do yesterday? | Що ти робив вчора?
-    What will you do today? | Що ти будеш робити сьогодні?
-    (реплайте моє повідомлення та починайте вашу відповідь з 
-    Вчора ...
-    Сьогодні ...
-    Блокери ... (опціонально))`);
+Як пройшов твій тиждень?
+Що корисного ти вивчив(-ла)/зробив(-ла)?
+Які плани на наступний тиждень?
+----------------------------
+Приклад відповіді:
+Грогу, Тиждень пройшов насичено, вивчив декілька нових ліб до Vue.js.
+Весь наступний тиждень буду правити баги.
+("Грогу" - обов'язково)`);
   });
 });
 
